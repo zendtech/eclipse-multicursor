@@ -17,7 +17,7 @@
   </modules>
 
   <properties>
-    <tycho.version>0.20.0</tycho.version>
+    <tycho.version>0.23.0</tycho.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -84,4 +84,30 @@
       </plugin>
     </plugins>
   </build>
+  
+  <profiles>
+    <profile>
+      <id>sign</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jarsigner-plugin</artifactId>
+            <version>1.4</version>
+            <configuration>
+              <tsa>https://timestamp.geotrust.com/tsa</tsa>
+            </configuration>
+            <executions>
+              <execution>
+                <id>sign</id>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
